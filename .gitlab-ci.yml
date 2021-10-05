@@ -1,0 +1,12 @@
+stages:
+  - build
+
+build:
+  stage: build
+  image: openjdk:12-alpine
+  script:
+    - cd complete
+    - ./gradlew build
+  artifacts:
+    paths:
+      - complete/build
