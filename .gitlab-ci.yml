@@ -6,6 +6,7 @@ build:
   image: openjdk:16-alpine
   script:
     - cd complete
+    - ls
     - ./gradlew build
   artifacts:
     paths:
