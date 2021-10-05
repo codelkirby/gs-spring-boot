@@ -1,6 +1,9 @@
 stages:
   - build
-
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - complete/build/
 build:
   stage: build
   image: openjdk:16-alpine
