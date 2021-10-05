@@ -3,13 +3,15 @@ stages:
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - complete/build/
+    - complete/build
 build:
   stage: build
-  image: openjdk:16-alpine
   script:
+    - export AWS_PROFILE=l2f
+    - aws ec2 describe-subnets
+    - whoami
+    - ls -altr
     - cd complete
-    - ls
     - ./gradlew build
   artifacts:
     paths:
