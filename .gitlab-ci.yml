@@ -20,6 +20,7 @@ build:
 docker build:
   stage: docker
   script:
+    - cd complete
     - export AWS_PROFILE=l2f
     - docker login -u AWS -p $(aws ecr get-login-password --region us-west-2) 698579318444.dkr.ecr.us-west-2.amazonaws.com
     - docker build -t gs-boot .
