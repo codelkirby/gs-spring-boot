@@ -1,6 +1,7 @@
 stages:
   - build
   - docker
+  - deploy
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
@@ -26,3 +27,9 @@ docker build:
     - docker build -t gs-boot .
     - docker tag gs-boot:latest 698579318444.dkr.ecr.us-west-2.amazonaws.com/gs-boot:latest
     - docker push 698579318444.dkr.ecr.us-west-2.amazonaws.com/gs-boot:latest
+eks deploy:
+  stage: deploy
+  script:
+    - git clone git@github.com:codelkirby/helm-charts.git
+    - cd helm-charts
+    - /opt/gitlab-scripts/helm_deploy.sh
