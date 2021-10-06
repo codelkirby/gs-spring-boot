@@ -20,7 +20,8 @@ build:
 docker build:
   stage: docker
   script:
-    - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 698579318444.dkr.ecr.us-west-2.amazonaws.com
+    - export AWS_PROFILE=l2f
+    - docker login -u AWS -p $(aws ecr get-login-password --region us-west-2) 698579318444.dkr.ecr.us-west-2.amazonaws.com
     - docker build -t gs-boot .
     - docker tag gs-boot:latest 698579318444.dkr.ecr.us-west-2.amazonaws.com/gs-boot:latest
     - docker push 698579318444.dkr.ecr.us-west-2.amazonaws.com/gs-boot:latest
